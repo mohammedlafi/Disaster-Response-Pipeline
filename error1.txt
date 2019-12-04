@@ -1,0 +1,73 @@
+F:\disaster_response_pipeline_project\app>python run.py
+C:\Users\user\AppData\Local\Programs\Python\Python37\lib\site-packages\sklearn\externals\joblib\externals\cloudpickle\cloudpickle.py:47: DeprecationWarning:
+
+the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+
+Traceback (most recent call last):
+  File "C:\Users\user\AppData\Local\Programs\Python\Python37\lib\site-packages\sqlalchemy\engine\base.py", line 2276, in _wrap_pool_connect
+    return fn()
+  File "C:\Users\user\AppData\Local\Programs\Python\Python37\lib\site-packages\sqlalchemy\pool\base.py", line 303, in unique_connection
+    return _ConnectionFairy._checkout(self)
+  File "C:\Users\user\AppData\Local\Programs\Python\Python37\lib\site-packages\sqlalchemy\pool\base.py", line 760, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "C:\Users\user\AppData\Local\Programs\Python\Python37\lib\site-packages\sqlalchemy\pool\base.py", line 492, in checkout
+    rec = pool._do_get()
+  File "C:\Users\user\AppData\Local\Programs\Python\Python37\lib\site-packages\sqlalchemy\pool\impl.py", line 238, in _do_get
+    return self._create_connection()
+  File "C:\Users\user\AppData\Local\Programs\Python\Python37\lib\site-packages\sqlalchemy\pool\base.py", line 308, in _create_connection
+    return _ConnectionRecord(self)
+  File "C:\Users\user\AppData\Local\Programs\Python\Python37\lib\site-packages\sqlalchemy\pool\base.py", line 437, in __init__
+    self.__connect(first_connect_check=True)
+  File "C:\Users\user\AppData\Local\Programs\Python\Python37\lib\site-packages\sqlalchemy\pool\base.py", line 639, in __connect
+    connection = pool._invoke_creator(self)
+  File "C:\Users\user\AppData\Local\Programs\Python\Python37\lib\site-packages\sqlalchemy\engine\strategies.py", line 114, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "C:\Users\user\AppData\Local\Programs\Python\Python37\lib\site-packages\sqlalchemy\engine\default.py", line 482, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+sqlite3.OperationalError: unable to open database file
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "run.py", line 30, in <module>
+    df = pd.read_sql_table('messages', engine)
+  File "C:\Users\user\AppData\Roaming\Python\Python37\site-packages\pandas\io\sql.py", line 241, in read_sql_table
+    meta.reflect(only=[table_name], views=True)
+  File "C:\Users\user\AppData\Local\Programs\Python\Python37\lib\site-packages\sqlalchemy\sql\schema.py", line 4208, in reflect
+    with bind.connect() as conn:
+  File "C:\Users\user\AppData\Local\Programs\Python\Python37\lib\site-packages\sqlalchemy\engine\base.py", line 2209, in connect
+    return self._connection_cls(self, **kwargs)
+  File "C:\Users\user\AppData\Local\Programs\Python\Python37\lib\site-packages\sqlalchemy\engine\base.py", line 103, in __init__
+    else engine.raw_connection()
+  File "C:\Users\user\AppData\Local\Programs\Python\Python37\lib\site-packages\sqlalchemy\engine\base.py", line 2307, in raw_connection
+    self.pool.unique_connection, _connection
+  File "C:\Users\user\AppData\Local\Programs\Python\Python37\lib\site-packages\sqlalchemy\engine\base.py", line 2280, in _wrap_pool_connect
+    e, dialect, self
+  File "C:\Users\user\AppData\Local\Programs\Python\Python37\lib\site-packages\sqlalchemy\engine\base.py", line 1547, in _handle_dbapi_exception_noconnection
+    util.raise_from_cause(sqlalchemy_exception, exc_info)
+  File "C:\Users\user\AppData\Local\Programs\Python\Python37\lib\site-packages\sqlalchemy\util\compat.py", line 398, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "C:\Users\user\AppData\Local\Programs\Python\Python37\lib\site-packages\sqlalchemy\util\compat.py", line 152, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\user\AppData\Local\Programs\Python\Python37\lib\site-packages\sqlalchemy\engine\base.py", line 2276, in _wrap_pool_connect
+    return fn()
+  File "C:\Users\user\AppData\Local\Programs\Python\Python37\lib\site-packages\sqlalchemy\pool\base.py", line 303, in unique_connection
+    return _ConnectionFairy._checkout(self)
+  File "C:\Users\user\AppData\Local\Programs\Python\Python37\lib\site-packages\sqlalchemy\pool\base.py", line 760, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "C:\Users\user\AppData\Local\Programs\Python\Python37\lib\site-packages\sqlalchemy\pool\base.py", line 492, in checkout
+    rec = pool._do_get()
+  File "C:\Users\user\AppData\Local\Programs\Python\Python37\lib\site-packages\sqlalchemy\pool\impl.py", line 238, in _do_get
+    return self._create_connection()
+  File "C:\Users\user\AppData\Local\Programs\Python\Python37\lib\site-packages\sqlalchemy\pool\base.py", line 308, in _create_connection
+    return _ConnectionRecord(self)
+  File "C:\Users\user\AppData\Local\Programs\Python\Python37\lib\site-packages\sqlalchemy\pool\base.py", line 437, in __init__
+    self.__connect(first_connect_check=True)
+  File "C:\Users\user\AppData\Local\Programs\Python\Python37\lib\site-packages\sqlalchemy\pool\base.py", line 639, in __connect
+    connection = pool._invoke_creator(self)
+  File "C:\Users\user\AppData\Local\Programs\Python\Python37\lib\site-packages\sqlalchemy\engine\strategies.py", line 114, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "C:\Users\user\AppData\Local\Programs\Python\Python37\lib\site-packages\sqlalchemy\engine\default.py", line 482, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) unable to open database file
+(Background on this error at: http://sqlalche.me/e/e3q8)
