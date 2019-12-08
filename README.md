@@ -71,6 +71,12 @@ env|grep WORK
 or run 
 https://view6914b2f4-3001.udacity-student-workspaces.com
 
+![screen1](https://user-images.githubusercontent.com/19904555/70387929-d44edd00-19b3-11ea-8e43-551942fe045e.PNG)
+![screen2](https://user-images.githubusercontent.com/19904555/70387931-d44edd00-19b3-11ea-8089-4ce6474c1469.PNG)
+![screen3](https://user-images.githubusercontent.com/19904555/70387932-d4e77380-19b3-11ea-981d-15d8db7e4ce8.PNG)
+
+
+
 ## Built With
 
 * Anaconda distribution using Jupyter notebook 
