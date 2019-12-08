@@ -42,28 +42,34 @@ The motivation for the project to help diffenet agencies in the case of disaster
 
 ## Summary of the results of the analysis
 
-We conclude that about 70% of developers have a formal education of Bachelor’s or Master's degree. 
-Developers with doctoral degrees earn the highest salaries.
-70% of developers have a computer science or related field major in undergraduate. 
-Non-computer science major in undergraduate earns more than computer science-related fields. 
-Developers with a psychology undergraduate major got the highest salaries.
-45 % of Developers’ parents have Bachelor’s or Master’s degree. 
-The developers whose parents hold doctoral degrees earn the highest salaries.
+We Extrcted data from two datafiles messages and categories, we transofromr them then we save them as databas.
+Then, we read the database into dataframes, build machine learning model, train the model and test it.
+We used flask app to goup all together.
 
 ### Installing
 
 
-No installation is needed, since this is a Jupyter notebook that contains both
-the code and its output. Also, dataset used is provided.
+unning the Web App from the Project Workspace IDE
+When working in the Project Workspace IDE, here is how to see your Flask app.
 
-It recommended to use Anaconda distribution to install both Python 
-and the notebook application. 
+Open a new terminal window. You should already be in the workspace folder, but if not, then use terminal commands to navigate inside the folder with the run.py file.
+
+Type in the command line:
+
+python run.py
+Your web app should now be running if there were no errors.
+
+Now, open another Terminal Window.
+
+Type
+
+env|grep WORK
 
 
 ## Usage
 
-Use Anaconda distribution to to run the Python Jupyter notebook.
-
+or run 
+https://view6914b2f4-3001.udacity-student-workspaces.com
 
 ## Built With
 
