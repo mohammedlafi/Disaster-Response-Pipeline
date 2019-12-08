@@ -18,14 +18,14 @@ The motivation for the project to help diffenet agencies in the case of disaster
 | `numpy   : `   |  a library for the Python programming language, adding support for large, multi-dimensional arrays and matrices |
 | `pandas   : `    | a software library written for the Python programming language for data manipulation and analysis. |
 | ` matplotlib.pyplo  : `      |   **a collection of command style functions that make matplotlib work like MATLABk** |
-| ` sys  : `      |     |
-| ` nltk   : `      |     |
-| ` flask   : `      |     |
-| `sqlalchemy    : `      |     |
-| ` pickle   : `      |     |
-| ` re   : `      |     |
-| `  json  : `      |     |
-| `plotly    : `      |     |
+| ` sys  : `      |  This module provides access to some variables used or maintained by the interpreter and to functions that interact strongly with the interpreter.   |
+| ` nltk   : `      |  The Natural Language Toolkit (NLTK) is a Python package for natural language processing.    |
+| ` flask   : `      |  Flask is a lightweight WSGI web application framework. It is designed to make getting started quick and easy, with the ability to scale up to complex applications.   |
+| `sqlalchemy    : `      |   SQLAlchemy is the Python SQL toolkit and Object Relational Mapper that gives application developers the full power and flexibility of SQL.  |
+| ` pickle   : `      | he pickle module implements binary protocols for serializing and de-serializing a Python object structure.    |
+| ` re   : `      |  This module provides regular expression matching operations similar to those found in Perl.  |
+| `  json  : `      |   s a lightweight data interchange format inspired by JavaScript object literal syntax (although it is not a strict subset of JavaScript  |
+| `plotly    : `      |   is a lightweight data interchange format inspired by JavaScript object literal syntax (although it is not a strict subset of JavaScript  |
 
 
 ##  The files  in the repository are 
