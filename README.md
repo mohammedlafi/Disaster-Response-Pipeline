@@ -32,9 +32,11 @@ The motivation for the project to help diffenet agencies in the case of disaster
 
 | FILE    | Description |
 | ---  | --- |
-| `survey-results-pulbic     : `         |csv file that contains the results of a survery distributed to software developers vi overstack website |
-| `survey-results-schema     : `         | csv file that contains the schema of the fileds of the survery distributed to software developers vi overstack website|
-| `write-A-DatacScienceBlog  : `         |   **Jupyter notebook** that contains the python code to answer question needed  in the study|
+| `messages     : `         |csv file that contains the messages  datasets  |
+| `scategories     : `           |csv file that contains the  categories datasets  |
+| `process_data.py  : `         |   **python file** data pipeline is the Extract, Transform, and Load process|
+| `train_classifier.py  : `         |  **python file** machine learning portion, in which we split the data into a training set and a test set. |
+| `run.py  : `         |  **python file** that consists of Flask App that will take care of other files|
 | `README.md  : `                        |  the readme file that explain the usage of this repository|
 
 
