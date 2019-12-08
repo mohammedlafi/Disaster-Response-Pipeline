@@ -7,10 +7,6 @@ from sqlalchemy import create_engine
 
 #----------------------------------
 import pickle
-import warnings
-import string
-import unittest
-warnings.filterwarnings("ignore")
 #----------------------------------
 
 
