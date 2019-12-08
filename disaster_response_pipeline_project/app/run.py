@@ -1,6 +1,7 @@
 import json
 import plotly
 import pandas as pd
+import numpy as np
 
 from nltk.stem import WordNetLemmatizer
 from nltk.tokenize import word_tokenize
@@ -26,12 +27,16 @@ def tokenize(text):
     return clean_tokens
 
 # load data
-#engine = create_engine('sqlite:///data/disaster.db')
-#df = pd.read_sql_table('messages', engine)
+#engine = create_engine('sqlite:///../data/YourDatabaseName.db')
+#engine = create_engine('sqlite:///../data/disaster.db')
+engine = create_engine('sqlite:///disaster.db')
+
+#df = pd.read_sql_table('YourTableName', engine)
+df = pd.read_sql_table('messages', engine)
 
 # load model
-model = joblib.load("../models/classifier.pkl")
-
+#model = joblib.load("../models/classifier.pkl")
+model = joblib.load("models/classifier.pkl")
 
 # index webpage displays cool visuals and receives user input text for model
 @app.route('/')
@@ -42,6 +47,24 @@ def index():
     # TODO: Below is an example - modify to extract data for your own visuals
     genre_counts = df.groupby('genre').count()['message']
     genre_names = list(genre_counts.index)
+    
+    # Show distribution of different category
+    category = list(df.columns[4:])
+    category_counts = []
+    for column_name in category:
+        category_counts.append(np.sum(df[column_name]))
+
+    
+    # extract data for top 5 categories
+    categories = df.iloc[:,4:]
+    categories_mean_top5 = categories.mean().sort_values(ascending=False).head(5)
+    categories_names_top5 = list(categories_mean_top5.index)
+
+    # extract data for tail 5 categories
+    categories = df.iloc[:,4:]
+    categories_mean_tail5 = categories.mean().sort_values(ascending=False).tail(5)
+    categories_names_tail5 = list(categories_mean_tail5.index)
+    
     
     # create visuals
     # TODO: Below is an example - modify to create your own visuals
@@ -55,7 +78,7 @@ def index():
             ],
 
             'layout': {
-                'title': 'Distribution of Message Genres',
+                'title': 'Distribution of Message Genres1',
                 'yaxis': {
                     'title': "Count"
                 },
@@ -63,9 +86,44 @@ def index():
                     'title': "Genre"
                 }
             }
+        },
+        {
+             'data': [
+                Bar(
+                    x=categories_names_top5,
+                    y=categories_mean_top5
+                )
+            ],
+
+            'layout': {
+                'title': 'Top five Categories',
+                'yaxis': {
+                    'title': "Mean"
+                },
+                'xaxis': {
+                    'title': "Category"
+                }
+            }
+        },
+        {
+            'data': [
+                Bar(
+                    x=categories_names_tail5,
+                    y=categories_mean_tail5
+                )
+            ],
+
+            'layout': {
+                'title': 'Tail five Categories',
+                'yaxis': {
+                    'title': "Mean"
+                },
+                'xaxis': {
+                    'title': "Categories"
+                }
+            }
         }
     ]
-    
     # encode plotly graphs in JSON
     ids = ["graph-{}".format(i) for i, _ in enumerate(graphs)]
     graphJSON = json.dumps(graphs, cls=plotly.utils.PlotlyJSONEncoder)
@@ -93,7 +151,6 @@ def go():
 
 
 def main():
-    print("starting init")
     app.run(host='0.0.0.0', port=3001, debug=True)
 
 

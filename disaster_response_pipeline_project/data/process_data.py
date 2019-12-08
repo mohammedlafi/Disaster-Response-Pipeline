@@ -10,24 +10,30 @@ def load_data(messages_filepath, categories_filepath):
           messages_filepath : the path of the messages.csv file
           categories_filepath   : the path of the categories.csv file
     output
-           data frame that is the merge of messages_filepath and  categories_filepath
+           a dataframe which is the merge of messages dataframe and  categories dataframe
     '''
      
     # load messages dataset
-    messages =  pd.read_csv('disaster_messages.csv')
+    messages =  pd.read_csv('data/disaster_messages.csv')
     # load categories dataset
-    categories = pd.read_csv('disaster_categories.csv')
+    categories = pd.read_csv('data/disaster_categories.csv')
     # merge datasets
     df = messages.merge(categories, how='left', on=['id'])
+    return df
     
 
 def clean_data(df):
     '''
     input
-          data frame that is the merge of messages_filepath and  categories_filepath
+          a dataframe that may have duplicates with different structure
     output
-        a cleaned data frame in which we removed null values and converted values 
+        a cleaned dataframe with new structure
+        
+       We  use this  method to  extract a list of new column names for categories.
+       and reomve duplicates
+                   
     '''
+    
     # create a dataframe of the 36 individual category columns
     categories = df["categories"].str.split(";", n = 36, expand = True)
     
@@ -65,9 +71,10 @@ def clean_data(df):
 def save_data(df, database_filename):
     '''
     input
-          data frame
+        a  dataframe
+        database file_name
     output
-         database file
+         saved datadframe in a database file
     '''
     engine = create_engine('sqlite:///disaster.db')
     df.to_sql('messages', con=engine, if_exists='replace',index=False)

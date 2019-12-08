@@ -21,7 +21,7 @@ nltk.download(['punkt', 'wordnet','stopwords'])
 
 
 # ------------------------------------------
-from nltk.stem.porter import PorterStemmer
+#from nltk.stem.porter import PorterStemmer
 #from nltk.stem.wordnet import WordNetLemmatizer
 # ------------------------------------------
 
@@ -42,7 +42,6 @@ from sklearn.pipeline                import Pipeline, FeatureUnion
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.model_selection         import train_test_split, GridSearchCV
 from sklearn.metrics                 import precision_score, recall_score, f1_score,classification_report, make_scorer
-from sklearn.ensemble                import AdaBoostClassifier
 from sklearn.base                    import BaseEstimator, TransformerMixin
 
 def load_data(database_filepath):
@@ -50,9 +49,10 @@ def load_data(database_filepath):
     input
           database_filepath : the path of the database
     output
+         
         X : training dataset
         y : test dataset
-        
+        category_names : dataframe that holds the names of cateogries
     '''
     ## Execute this code cell to output the values in the categories table
     # connect to the database
@@ -74,6 +74,7 @@ def tokenize(text):
     output
        tokens : set of words 
         
+      we remove stopwords form the text, tokenize it , then lemmatize it
     '''
     stop_words = stopwords.words("english")
     lemmatizer = WordNetLemmatizer()
@@ -88,42 +89,62 @@ def tokenize(text):
 
     return tokens
 
-def build_pipeline():
-    
-    pipeline = Pipeline ([
-        ('vect'    , CountVectorizer(tokenizer=tokenize)),
-        ('tfidf'   , TfidfTransformer()),
-        ('clf'     , MultiOutputClassifier(RandomForestClassifier( ) ))     
-    ])
-    
-    return pipeline
+#def build_pipeline():
+#    
+#    pipeline = Pipeline ([
+#        ('vect'    , CountVectorizer(tokenizer=tokenize)),
+#        ('tfidf'   , TfidfTransformer()),
+#        ('clf'     , MultiOutputClassifier(RandomForestClassifier( ) ))     
+#    ])
+#    
+#    return pipeline
 
 def build_model():
     '''
     input
-          text  : raw text
+          
     output
-       tokens : set of words 
+       classifier with best parameters
+       
+   We bulid machine learning pipeline that uses 
+   CountVectorizer,TfidfTransformer,MultiOutputClassifier, and RandomForestClassifier
+   and create parameters list
+   then we use GridSearchCV to find the best parameters for our model 
         
     '''
     
+    
+    parameters = {
+       'vect__max_df': [0.8]
+       ,'clf__estimator__min_samples_leaf': [1,5,8] 
+       ,'clf__estimator__max_features': ['log2', 'sqrt','auto']
+      
+    }
+# ,'clf__estimator__min_samples_split': (2, 9, 25, 49 )      
     pipeline = Pipeline ([
         ('vect'    , CountVectorizer(tokenizer=tokenize)),
         ('tfidf'   , TfidfTransformer()),
         ('clf'     , MultiOutputClassifier(RandomForestClassifier( ) ))     
     ])
+    cv = GridSearchCV(pipeline, parameters, cv=5, n_jobs=-1 ,verbose=10)
+     
+    return cv
     
-    return pipeline
 
 
 def evaluate_model(model, X_test, Y_test, category_names):
     '''
     input
+    model, X_test, Y_test, category_names
     
      output
+      a dataframe that contains the  perfomances metrics
+                
+   We evaluate the model performances using  f1-score, precison and recall
      
-        
     '''
+    
+    
     # predict on the X_test
     y_pred = model.predict(X_test)
     # build classification report on every column
@@ -139,11 +160,12 @@ def evaluate_model(model, X_test, Y_test, category_names):
 
 
 def save_model(model, model_filepath):
+        
     '''
     input
-    
+        model, model_filepath
      output
-     
+        the model is saves as pickle file
         
     '''
     pickle.dump(model, open(model_filepath, "wb"))
