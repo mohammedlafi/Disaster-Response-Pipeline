@@ -1,17 +1,14 @@
 # Disaster-Response-Pipeline
   Disaster Response Pipeline
 
-The project is a Python code for writing a data science blog.
-Our investigation is based on a dataset from stack overflow developer survey results from 2017. 
-This data was collected using a questionnaire answered by developers around the world. 
-This questionnaire considers the following attributes regarding education: Formal Education, Major Undergraduate, and Highest Education of Parents.
- Next, we discuss these attributes and how they affect both the gained salary and percentage of developers.
+This is a web application that may be used during disasters. The web application can take a message and determine which type of it and how can we take care of it.
+The used data are real and are taken from Figure Eight. The project consists of three main parts. First, Data input is  performed using ETL pipeline, Second, Classifier is build using MLP pipeline. Finally, interacting with users using app application.
 
 
 
 ## The motivation for the project
 
-The motivation for the project to instigate the relationship or effect of the developer’s education on his/her salary satisfaction. 
+The motivation for the project to help diffenet agencies in the case of disaster to interact with people who need help. 
 
 ##  Libraries used
 
@@ -21,9 +18,14 @@ The motivation for the project to instigate the relationship or effect of the de
 | `numpy   : `   |  a library for the Python programming language, adding support for large, multi-dimensional arrays and matrices |
 | `pandas   : `    | a software library written for the Python programming language for data manipulation and analysis. |
 | ` matplotlib.pyplo  : `      |   **a collection of command style functions that make matplotlib work like MATLABk** |
-
-
-
+| ` sys  : `      |     |
+| ` nltk   : `      |     |
+| ` flask   : `      |     |
+| `sqlalchemy    : `      |     |
+| ` pickle   : `      |     |
+| ` re   : `      |     |
+| `  json  : `      |     |
+| `plotly    : `      |     |
 
 
 ##  The files  in the repository are 
